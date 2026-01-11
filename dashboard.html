@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Adventure Dashboard - Tujibambe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dashboard Specific Styles */
+        .dashboard-page {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .dashboard-title {
+            color: #2d5a27;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dashboard-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .booking-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #4a7c59;
+        }
+        
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .booking-title {
+            color: #2d5a27;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .booking-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .booking-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .booking-status.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-value {
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .account-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            margin-top: 3rem;
+        }
+        
+        .account-title {
+            color: #2d5a27;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .account-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .account-form {
+            max-width: 500px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #4a7c59;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2d5a27, #4a7c59);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 90, 39, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #2d5a27;
+            border: 2px solid #2d5a27;
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: #2d5a27;
+            color: white;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-title {
+                font-size: 2rem;
+            }
+            
+            .booking-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="dashboard-page">
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">Tujibambe</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="roadtrips.html">Roadtrips</a></li>
+                <li><a href="adventures.html">Crazy Adventures</a></li>
+                <li><a href="activities.html">Timeless Activities</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">🌍 Your Adventure Dashboard</h1>
+            <p class="dashboard-subtitle">Manage your bookings and create an account to access exclusive benefits</p>
+        </div>
+
+        <div class="booking-card" id="booking-details">
+            <div class="booking-header">
+                <h2 class="booking-title" id="trip-name">Loading your adventure...</h2>
+                <span class="booking-status pending" id="booking-status">Pending</span>
+            </div>
+            
+            <div class="booking-details">
+                <div class="detail-item">
+                    <span class="detail-label">Booking ID</span>
+                    <span class="detail-value" id="booking-id">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Participants</span>
+                    <span class="detail-value" id="participants">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Start Date</span>
+                    <span class="detail-value" id="start-date">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Total Price</span>
+                    <span class="detail-value" id="total-price">-</span>
+                </div>
+            </div>
+            
+            <div class="booking-actions">
+                <a href="booking.html" class="btn btn-secondary">Modify Booking</a>
+                <button class="btn btn-primary" onclick="downloadConfirmation()">Download Confirmation</button>
+            </div>
+        </div>
+
+        <div class="account-section">
+            <h2 class="account-title">👤 Create Your Account (Optional)</h2>
+            <p class="account-subtitle">Create an account to manage all your bookings, get exclusive offers, and enjoy faster check-ins on future adventures!</p>
+            
+            <div class="success-message" id="account-success">
+                Account created successfully! You can now manage all your bookings in one place.
+            </div>
+            
+            <form id="account-form" class="account-form">
+                <div class="form-group">
+                    <label for="account-email">Email Address</label>
+                    <input type="email" id="account-email" name="email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="account-password">Password (optional)</label>
+                    <input type="password" id="account-password" name="password" placeholder="Create a password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="account-name">Full Name</label>
+                    <input type="text" id="account-name" name="name" required placeholder="Your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="account-phone">Phone Number</label>
+                    <input type="tel" id="account-phone" name="phone" placeholder="+254 XXX XXX XXX">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                <button type="button" class="btn btn-secondary" onclick="skipAccount()">Skip for Now</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tujibambe</h3>
+                    <p>Your gateway to Kenya's most thrilling adventures. Experience the wild side of Africa like never before.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Follow us on Facebook">Facebook</a>
+                        <a href="#" class="social-link" title="Follow us on Instagram">Instagram</a>
+                        <a href="#" class="social-link" title="Follow us on Twitter">Twitter</a>
+                        <a href="#" class="social-link" title="Watch us on YouTube">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Adventures</h3>
+                    <ul>
+                        <li><a href="roadtrips.html" class="footer-link">Roadtrips</a></li>
+                        <li><a href="adventures.html" class="footer-link">Crazy Adventures</a></li>
+                        <li><a href="activities.html" class="footer-link">Timeless Activities</a></li>
+                        <li><a href="safari-tours.html" class="footer-link">Safari Tours</a></li>
+                        <li><a href="mountain-climbing.html" class="footer-link">Mountain Climbing</a></li>
+                        <li><a href="beach-getaways.html" class="footer-link">Beach Getaways</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Specialties</h3>
+                    <ul>
+                        <li><a href="wildlife-photography.html" class="footer-link">Wildlife Photography</a></li>
+                        <li><a href="cultural-tours.html" class="footer-link">Cultural Tours</a></li>
+                        <li><a href="extreme-sports.html" class="footer-link">Extreme Sports</a></li>
+                        <li><a href="luxury-camping.html" class="footer-link">Luxury Camping</a></li>
+                        <li><a href="bird-watching.html" class="footer-link">Bird Watching</a></li>
+                        <li><a href="fishing-expeditions.html" class="footer-link">Fishing Expeditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>📧 info@tujibambe.com</p>
+                    <p>📞 +254 700 123 456</p>
+                    <p>📍 Nairobi, Kenya</p>
+                    <div class="footer-links">
+                        <a href="about-us.html" class="footer-link-btn">About Us</a>
+                        <a href="privacy-policy.html" class="footer-link-btn">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="footer-link-btn">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tujibambe. All rights reserved.</p>
+                <div class="footer-animated-text">
+                    <span>Discover Kenya's Wild Side • Unforgettable Adventures • Book Your Journey Today • Experience the Magic of Africa • </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get booking ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookingId = urlParams.get('booking');
+            
+            if (bookingId) {
+                fetchBookingDetails(bookingId);
+            }
+            
+            // Handle account creation form
+            const accountForm = document.getElementById('account-form');
+            accountForm.addEventListener('submit', handleAccountCreation);
+        });
+        
+        function fetchBookingDetails(bookingId) {
+            fetch(`/api/bookings/${bookingId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.booking) {
+                        displayBookingDetails(data.booking);
+                    } else {
+                        console.error('Booking not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching booking:', error);
+                });
+        }
+        
+        function displayBookingDetails(booking) {
+            document.getElementById('trip-name').textContent = booking.tripName;
+            document.getElementById('booking-id').textContent = booking._id;
+            document.getElementById('participants').textContent = booking.participants;
+            document.getElementById('start-date').textContent = new Date(booking.startDate).toLocaleDateString();
+            document.getElementById('total-price').textContent = `$${booking.totalPrice}`;
+            
+            const statusElement = document.getElementById('booking-status');
+            statusElement.textContent = booking.status.charAt(0).toUpperCase() + booking.status.slice(1);
+            statusElement.className = `booking-status ${booking.status}`;
+            
+            // Pre-fill account form if user hasn't created account yet
+            if (!booking.accountCreated) {
+                document.getElementById('account-email').value = booking.email;
+                document.getElementById('account-name').value = booking.name;
+                document.getElementById('account-phone').value = booking.phone;
+            }
+        }
+        
+        function handleAccountCreation(e) {
+            e.preventDefault();
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookingId = urlParams.get('booking');
+            
+            const formData = {
+                email: document.getElementById('account-email').value,
+                password: document.getElementById('account-password').value || undefined,
+                name: document.getElementById('account-name').value,
+                phone: document.getElementById('account-phone').value,
+                bookingId: bookingId
+            };
+            
+            fetch('/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('account-success').classList.add('show');
+                    accountForm.reset();
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 3000);
+                } else {
+                    alert('Error creating account: ' + (data.message || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Account creation error:', error);
+                alert('Error creating account. Please try again.');
+            });
+        }
+        
+        function skipAccount() {
+            window.location.href = 'index.html';
+        }
+        
+        function downloadConfirmation() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookingId = urlParams.get('booking');
+            
+            if (bookingId) {
+                window.location.href = `/api/bookings/${bookingId}/confirmation`;
+            }
+        }
+    </script>
+</body>
+</html>

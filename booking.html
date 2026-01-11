@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Adventure - Tujibambe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Booking Page Styles */
+        .booking-page {
+            background: white;
+            min-height: 100vh;
+        }
+
+        .booking-page .page-hero {
+            background: linear-gradient(135deg, #2d5a27, #4a7c59);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .booking-page .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+
+        .booking-page .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .booking-page .page-hero-content h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .booking-page .page-hero-content p {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .booking-section {
+            padding: 60px 0;
+        }
+
+        .booking-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            padding: 3rem;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .trip-details {
+            padding: 2.5rem;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .trip-details h2 {
+            color: #2d5a27;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .trip-details h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2d5a27, #4a7c59);
+            border-radius: 3px;
+        }
+
+        .trip-summary-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .trip-summary-header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 3px solid #4a7c59;
+        }
+
+        .trip-summary-details {
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .trip-summary-details p {
+            margin-bottom: 0.8rem;
+            color: #555;
+        }
+
+        .trip-summary-details strong {
+            color: #2d5a27;
+        }
+
+        .booking-form {
+            padding: 2.5rem;
+        }
+
+        .booking-form h2 {
+            color: #2d5a27;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .booking-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #2d5a27, #4a7c59);
+            border-radius: 3px;
+        }
+
+        .trip-summary-section,
+        .personal-info-section,
+        .booking-summary-section,
+        .terms-section {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .trip-summary-section:hover,
+        .personal-info-section:hover,
+        .booking-summary-section:hover,
+        .terms-section:hover {
+            transform: translateX(5px);
+        }
+
+        .terms-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .terms-text {
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .terms-info {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .terms-info p {
+            margin: 0;
+        }
+
+        .trip-summary-section h3,
+        .personal-info-section h3,
+        .booking-summary-section h3,
+        .terms-section h3 {
+            color: #4a7c59;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trip-summary-section h3::before,
+        .personal-info-section h3::before,
+        .booking-summary-section h3::before,
+        .terms-section h3::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #2d5a27, #4a7c59);
+            border-radius: 50%;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group input[type="date"],
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a7c59;
+            background: white;
+            box-shadow: 0 5px 15px rgba(74, 124, 89, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label:hover {
+            color: #2d5a27;
+        }
+
+        .checkmark {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #4a7c59;
+            border-radius: 6px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label input:checked + .checkmark {
+            background: linear-gradient(135deg, #2d5a27, #4a7c59);
+            border-color: #2d5a27;
+        }
+
+        .checkbox-label input:checked + .checkmark::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2d5a27, #4a7c59);
+            color: white;
+            box-shadow: 0 6px 20px rgba(45, 90, 39, 0.3);
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(45, 90, 39, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2d5a27;
+            border: 2px solid #2d5a27;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #2d5a27;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .confirmation-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .confirmation-item:last-child {
+            border-bottom: none;
+        }
+
+        .confirmation-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .confirmation-value {
+            color: #333;
+        }
+
+        .total-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2d5a27;
+        }
+
+        .link {
+            color: #4a7c59;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            color: #2d5a27;
+            text-decoration: underline;
+        }
+
+        .terms-info {
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .trip-details {
+                position: static;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 1.5rem;
+            }
+
+            .trip-details, .booking-form {
+                padding: 1.5rem;
+            }
+
+            .page-hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .page-hero-content p {
+                font-size: 1rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(45, 90, 39, 0.2);
+            border-top-color: #2d5a27;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Animation */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(45, 90, 39, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .success-message {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-submessage {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .success-btn {
+            padding: 12px 24px;
+            background: white;
+            color: #2d5a27;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="booking-page">
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">Tujibambe</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="roadtrips.html">Roadtrips</a></li>
+                <li><a href="adventures.html">Crazy Adventures</a></li>
+                <li><a href="activities.html">Timeless Activities</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <h1>Book Your Kenyan Adventure</h1>
+                    <p>Complete your booking and get ready for an unforgettable journey through Kenya's breathtaking landscapes and vibrant cultures</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-section">
+            <div class="container">
+                <div class="booking-container">
+                    <div class="trip-details" id="trip-details">
+                        <h2>Your Adventure Details</h2>
+                        <p>Select a trip to see details.</p>
+                    </div>
+                    <div class="booking-form">
+                        <h2>Complete Your Booking</h2>
+                        <form id="booking-form">
+                            <div class="trip-summary-section">
+                                <h3>Your Selected Trip</h3>
+                                <div id="selected-trip-summary">
+                                    <p>No trip selected. Please go back and select a trip.</p>
+                                </div>
+                            </div>
+
+                            <div class="personal-info-section">
+                                <h3>Booking Type</h3>
+                                <div class="booking-type-selector">
+                                    <div class="type-option active" data-type="individual">
+                                        <i>👤</i>
+                                        <h4>Individual</h4>
+                                        <p>Single Adventurer</p>
+                                    </div>
+                                    <div class="type-option" data-type="group">
+                                        <i>👥</i>
+                                        <h4>Group Tour</h4>
+                                        <p>Groups of 2 or more</p>
+                                    </div>
+                                </div>
+
+                                <div id="group-size-container" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="group-size">Group Size (2-30) *</label>
+                                        <input type="number" id="group-size" name="group-size" min="2" max="30" value="2">
+                                    </div>
+                                    
+                                    <div id="car-suggestions-container">
+                                        <h4>Suggested Vehicles for Your Group</h4>
+                                        <div class="car-suggestions" id="car-suggestions">
+                                            <!-- Suggested cars will appear here -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3>Personal Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Full Name *</label>
+                                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address *</label>
+                                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number *</label>
+                                        <input type="tel" id="phone" name="phone" required placeholder="+254 XXX XXX XXX">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="participants">Number of Participants *</label>
+                                        <input type="number" id="participants" name="participants" min="1" max="10" required value="1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="start-date">Preferred Start Date *</label>
+                                    <input type="date" id="start-date" name="start-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="special-requests">Special Requests</label>
+                                    <textarea id="special-requests" name="special-requests" rows="4" placeholder="Any dietary requirements, accessibility needs, or special requests..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="booking-summary-section">
+                                <h3>Booking Summary</h3>
+                                <div id="booking-confirmation">
+                                    <p>Please fill in your details above to see the booking summary.</p>
+                                </div>
+                            </div>
+
+                            <div class="terms-section">
+                                <h3>Terms and Conditions</h3>
+                                <div class="terms-content">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="terms" required>
+                                        <span class="checkmark"></span>
+                                        <span class="terms-text">
+                                            I agree to the <a href="terms-of-service.html" class="link" target="_blank">Terms and Conditions</a> and
+                                            <a href="privacy-policy.html" class="link" target="_blank">Privacy Policy</a> *
+                                        </span>
+                                    </label>
+                                    <div class="terms-info">
+                                        By checking this box, you confirm that you have read, understood, and agree to our Terms and Conditions and Privacy Policy. These documents outline your rights and responsibilities as a customer, as well as how we handle your personal information.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Back to Trips</button>
+                                <button type="submit" class="btn btn-primary">Complete Booking</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tujibambe</h3>
+                    <p>Your gateway to Kenya's most thrilling adventures. Experience the wild side of Africa like never before.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Follow us on Facebook">Facebook</a>
+                        <a href="#" class="social-link" title="Follow us on Instagram">Instagram</a>
+                        <a href="#" class="social-link" title="Follow us on Twitter">Twitter</a>
+                        <a href="#" class="social-link" title="Watch us on YouTube">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Adventures</h3>
+                    <ul>
+                        <li><a href="roadtrips.html" class="footer-link">Roadtrips</a></li>
+                        <li><a href="adventures.html" class="footer-link">Crazy Adventures</a></li>
+                        <li><a href="activities.html" class="footer-link">Timeless Activities</a></li>
+                        <li><a href="safari-tours.html" class="footer-link">Safari Tours</a></li>
+                        <li><a href="mountain-climbing.html" class="footer-link">Mountain Climbing</a></li>
+                        <li><a href="beach-getaways.html" class="footer-link">Beach Getaways</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Specialties</h3>
+                    <ul>
+                        <li><a href="wildlife-photography.html" class="footer-link">Wildlife Photography</a></li>
+                        <li><a href="cultural-tours.html" class="footer-link">Cultural Tours</a></li>
+                        <li><a href="extreme-sports.html" class="footer-link">Extreme Sports</a></li>
+                        <li><a href="luxury-camping.html" class="footer-link">Luxury Camping</a></li>
+                        <li><a href="bird-watching.html" class="footer-link">Bird Watching</a></li>
+                        <li><a href="fishing-expeditions.html" class="footer-link">Fishing Expeditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>📧 info@tujibambe.com</p>
+                    <p>📞 +254 700 123 456</p>
+                    <p>📍 Nairobi, Kenya</p>
+                    <div class="footer-links">
+                        <a href="about-us.html" class="footer-link-btn">About Us</a>
+                        <a href="privacy-policy.html" class="footer-link-btn">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="footer-link-btn">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tujibambe. All rights reserved.</p>
+                <div class="footer-animated-text">
+                    <span>Discover Kenya's Wild Side • Unforgettable Adventures • Book Your Journey Today • Experience the Magic of Africa • </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Seat Selection Modal -->
+    <div id="seatModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Select Your Preferred Seat</h3>
+            <p>Choose your spot in the <span id="selected-car-name">vehicle</span></p>
+            
+            <div class="seat-grid-container">
+                <div class="car-layout">
+                    <div class="driver-seat">Driver</div>
+                    <div class="seats-container" id="seats-container">
+                        <!-- Seats will be generated here -->
+                    </div>
+                </div>
+
+                <div class="seat-legend">
+                    <div class="legend-item">
+                        <div class="legend-box available"></div>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box selected"></div>
+                        <span>Selected</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box occupied"></div>
+                        <span>Occupied</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" id="confirm-seats">Confirm Selection</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Enhanced booking form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingForm = document.getElementById('booking-form');
+            const tripDetails = document.getElementById('trip-details');
+            const selectedTripSummary = document.getElementById('selected-trip-summary');
+            const bookingConfirmation = document.getElementById('booking-confirmation');
+            
+            // New Elements
+            const typeOptions = document.querySelectorAll('.type-option');
+            const participantsInput = document.getElementById('participants');
+            const groupSizeContainer = document.getElementById('group-size-container');
+            const groupSizeInput = document.getElementById('group-size');
+            const carSuggestions = document.getElementById('car-suggestions');
+            const seatModal = document.getElementById('seatModal');
+            const closeModal = document.querySelector('.close-modal');
+            const seatsContainer = document.getElementById('seats-container');
+            const confirmSeatsBtn = document.getElementById('confirm-seats');
+            
+            let selectedType = 'individual';
+            let selectedVehicle = null;
+            let selectedSeats = [];
+            
+            // Get trip ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripId = urlParams.get('trip');
+            
+            // Trip data (simplified version for this page)
+            const tripData = {
+                'coastal-drive': {
+                    name: 'Mombasa to Lamu Coastal Drive',
+                    duration: '7 days',
+                    price: 1200,
+                    description: '7 days of pristine beaches, Swahili culture, and Indian Ocean sunsets.',
+                    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'
+                },
+                'mount-kenya': {
+                    name: 'Mount Kenya Circuit',
+                    duration: '5 days',
+                    price: 950,
+                    description: 'Circumnavigate Africa\'s second-highest peak through forests and wildlife reserves.',
+                    image: 'https://images.unsplash.com/photo-1464822759844-d150f39ac1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'
+                },
+                'rift-valley': {
+                    name: 'Rift Valley Explorer',
+                    duration: '6 days',
+                    price: 1050,
+                    description: 'Traverse the Great Rift Valley, visiting lakes, craters, and Maasai communities.',
+                    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'
+                },
+                'safari-run': {
+                    name: 'Ultimate Safari Run',
+                    duration: '3 days',
+                    price: 800,
+                    description: 'Run with the wildebeest migration in the Maasai Mara.',
+                    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'
+                },
+                'maasai-cultural': {
+                    name: 'Maasai Cultural Immersion',
+                    duration: '3 days',
+                    price: 600,
+                    description: 'Live with Maasai warriors, learn their traditions, and participate in age-old ceremonies.',
+                    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'
+                }
+            };
+
+            const vehicleData = [
+                { id: 'prado', name: 'Toyota Prado 4x4', capacity: 4, image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+                { id: 'cruiser', name: 'Safari Land Cruiser', capacity: 7, image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+                { id: 'van', name: 'Luxury Tour Van', capacity: 14, image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+                { id: 'coaster', name: 'Luxury Coaster Bus', capacity: 25, image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+                { id: 'overland', name: 'Overland Safari Truck', capacity: 30, image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' }
+            ];
+            
+            // Handle Booking Type Change
+            typeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    typeOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    selectedType = option.dataset.type;
+                    
+                    if (selectedType === 'group') {
+                        groupSizeContainer.style.display = 'block';
+                        participantsInput.parentElement.style.display = 'none';
+                        participantsInput.value = groupSizeInput.value;
+                        updateVehicleSuggestions(groupSizeInput.value);
+                    } else {
+                        groupSizeContainer.style.display = 'none';
+                        participantsInput.parentElement.style.display = 'block';
+                        participantsInput.value = 1;
+                        participantsInput.readOnly = true;
+                        selectedVehicle = null;
+                        selectedSeats = [];
+                    }
+                    updateBookingSummary();
+                });
+            });
+
+            groupSizeInput.addEventListener('input', (e) => {
+                participantsInput.value = e.target.value;
+                updateVehicleSuggestions(e.target.value);
+                updateBookingSummary();
+            });
+
+            function updateVehicleSuggestions(size) {
+                const count = parseInt(size);
+                carSuggestions.innerHTML = '';
+                
+                const suggested = vehicleData.filter(v => v.capacity >= count);
+                
+                suggested.forEach(vehicle => {
+                    const card = document.createElement('div');
+                    card.className = 'car-card';
+                    card.innerHTML = `
+                        <img src="${vehicle.image}" alt="${vehicle.name}">
+                        <h5>${vehicle.name}</h5>
+                        <p>Fits up to ${vehicle.capacity}</p>
+                        <button type="button" class="btn btn-primary btn-select-car" data-id="${vehicle.id}">Select Seats</button>
+                    `;
+                    carSuggestions.appendChild(card);
+                });
+
+                document.querySelectorAll('.btn-select-car').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const vehicleId = e.target.dataset.id;
+                        openSeatModal(vehicleId);
+                    });
+                });
+            }
+
+            function openSeatModal(vehicleId) {
+                selectedVehicle = vehicleData.find(v => v.id === vehicleId);
+                document.getElementById('selected-car-name').textContent = selectedVehicle.name;
+                generateSeats(selectedVehicle.capacity);
+                seatModal.style.display = 'block';
+            }
+
+            function generateSeats(capacity) {
+                seatsContainer.innerHTML = '';
+                selectedSeats = [];
+                const requiredSeats = parseInt(participantsInput.value);
+
+                // Adjust grid columns and layout for different vehicle types
+                if (capacity > 14) {
+                    // Bus/Truck layout: 2 seats - aisle - 2 seats
+                    seatsContainer.style.gridTemplateColumns = 'repeat(5, 1fr)'; // 5th col for aisle
+                    document.querySelector('.car-layout').style.width = '380px';
+                } else {
+                    // Van/Cruiser layout: 2 seats
+                    seatsContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                    document.querySelector('.car-layout').style.width = '280px';
+                }
+
+                for (let i = 1; i <= capacity; i++) {
+                    // Add aisle space for large vehicles
+                    if (capacity > 14 && (i - 1) % 4 === 2) {
+                        const aisle = document.createElement('div');
+                        aisle.className = 'aisle-space';
+                        aisle.style.gridColumn = '3';
+                        seatsContainer.appendChild(aisle);
+                    }
+
+                    const seat = document.createElement('div');
+                    seat.className = 'seat';
+                    seat.textContent = i;
+                    
+                    if (Math.random() < 0.15) {
+                        seat.classList.add('occupied');
+                    } else {
+                        seat.addEventListener('click', () => toggleSeat(seat, i, requiredSeats));
+                    }
+                    
+                    seatsContainer.appendChild(seat);
+                }
+            }
+
+            function toggleSeat(seatEl, seatNum, max) {
+                if (seatEl.classList.contains('selected')) {
+                    seatEl.classList.remove('selected');
+                    selectedSeats = selectedSeats.filter(s => s !== seatNum);
+                } else {
+                    if (selectedSeats.length < max) {
+                        seatEl.classList.add('selected');
+                        selectedSeats.push(seatNum);
+                    } else {
+                        alert(`You can only select ${max} seats.`);
+                    }
+                }
+            }
+
+            confirmSeatsBtn.addEventListener('click', () => {
+                const max = selectedType === 'group' ? parseInt(groupSizeInput.value) : parseInt(participantsInput.value);
+                if (selectedSeats.length < max) {
+                    alert(`Please select all ${max} seats.`);
+                    return;
+                }
+                seatModal.style.display = 'none';
+                updateBookingSummary();
+            });
+
+            closeModal.onclick = () => seatModal.style.display = 'none';
+            window.onclick = (e) => { if (e.target == seatModal) seatModal.style.display = 'none'; };
+            
+            // Display trip details if available
+            if (tripId && tripData[tripId]) {
+                const trip = tripData[tripId];
+                const html = `
+                    <h2>Your Adventure Details</h2>
+                    <div class="trip-summary-header">
+                        <img src="${trip.image}" alt="${trip.name}">
+                        <div>
+                            <h4>${trip.name}</h4>
+                            <p>${trip.description}</p>
+                        </div>
+                    </div>
+                    <div class="trip-summary-details">
+                        <p><strong>Duration:</strong> ${trip.duration}</p>
+                        <p><strong>Price per person:</strong> $${trip.price}</p>
+                    </div>
+                `;
+                tripDetails.innerHTML = html;
+                selectedTripSummary.innerHTML = html;
+            } else {
+                selectedTripSummary.innerHTML = `
+                    <div style="text-align: center; color: #ff6b6b; padding: 20px;">
+                        <p style="font-size: 1.1rem; margin-bottom: 15px;">No trip selected.</p>
+                        <p>Please go back and select a trip to book.</p>
+                        <button type="button" onclick="window.history.back()" class="btn btn-secondary">Back to Trips</button>
+                    </div>
+                `;
+            }
+            
+            // Update booking summary in real-time
+            function updateBookingSummary() {
+                if (!tripId || !tripData[tripId]) return;
+                
+                const trip = tripData[tripId];
+                const participants = selectedType === 'group' ? (parseInt(groupSizeInput.value) || 4) : (parseInt(participantsInput.value) || 1);
+                const startDate = document.getElementById('start-date').value;
+                const name = document.getElementById('name').value.trim();
+                
+                const totalPrice = trip.price * participants;
+                
+                let summaryHTML = `
+                    <div class="confirmation-item">
+                        <span class="confirmation-label">Booking Type:</span>
+                        <span class="confirmation-value">${selectedType === 'group' ? 'Group Tour' : 'Individual'}</span>
+                    </div>
+                    <div class="confirmation-item">
+                        <span class="confirmation-label">Trip:</span>
+                        <span class="confirmation-value">${trip.name}</span>
+                    </div>
+                    <div class="confirmation-item">
+                        <span class="confirmation-label">Participants:</span>
+                        <span class="confirmation-value">${participants}</span>
+                    </div>
+                `;
+                
+                if (selectedVehicle) {
+                    summaryHTML += `
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Vehicle:</span>
+                            <span class="confirmation-value">${selectedVehicle.name}</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Selected Seats:</span>
+                            <span class="confirmation-value">${selectedSeats.join(', ') || 'None selected'}</span>
+                        </div>
+                    `;
+                }
+                
+                if (startDate) {
+                    summaryHTML += `
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Start Date:</span>
+                            <span class="confirmation-value">${new Date(startDate).toLocaleDateString()}</span>
+                        </div>
+                    `;
+                }
+                
+                summaryHTML += `
+                    <div class="confirmation-item">
+                        <span class="confirmation-label total-price">Total Price:</span>
+                        <span class="confirmation-value total-price">$${totalPrice}</span>
+                    </div>
+                `;
+                
+                bookingConfirmation.innerHTML = summaryHTML;
+            }
+            
+            // Add event listeners for real-time updates
+            participantsInput.addEventListener('input', updateBookingSummary);
+            document.getElementById('start-date').addEventListener('input', updateBookingSummary);
+            document.getElementById('name').addEventListener('input', updateBookingSummary);
+            document.getElementById('email').addEventListener('input', updateBookingSummary);
+            document.getElementById('phone').addEventListener('input', updateBookingSummary);
+            
+            // Form submission
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (!validateForm()) return;
+                
+                const participants = selectedType === 'group' ? parseInt(groupSizeInput.value) : parseInt(participantsInput.value);
+                if (selectedType === 'group' && selectedSeats.length < participants) {
+                    alert('Please select your seats before completing the booking.');
+                    return;
+                }
+                
+                // Prepare booking data
+                const bookingData = {
+                    tripId: tripId,
+                    tripName: tripData[tripId].name,
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    participants: participants,
+                    startDate: document.getElementById('start-date').value,
+                    bookingType: selectedType,
+                    specialRequests: document.getElementById('special-requests').value,
+                    vehicle: selectedVehicle ? selectedVehicle.name : null,
+                    seats: selectedSeats,
+                    totalPrice: tripData[tripId].price * participants
+                };
+                
+                // Submit to API
+                submitBooking(bookingData);
+            });
+            
+            function submitBooking(bookingData) {
+                fetch(window.location.protocol + '//' + window.location.host + '/api/bookings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(bookingData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showSuccessOverlay(data.bookingId);
+                    } else {
+                        alert('Error creating booking: ' + (data.message || 'Unknown error'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Booking submission error:', error);
+                    alert('Error submitting booking. Please try again.');
+                });
+            }
+            
+            function showSuccessOverlay(bookingId) {
+                const overlay = document.createElement('div');
+                overlay.className = 'success-overlay';
+                overlay.innerHTML = `
+                    <div class="success-icon">✓</div>
+                    <div class="success-message">🎉 Booking Successful!</div>
+                    <div class="success-submessage">Your Kenyan adventure awaits! We've sent you a confirmation email.</div>
+                    <div class="success-actions">
+                        <button class="success-btn" onclick="window.location.href='index.html'">Return to Home</button>
+                        <button class="success-btn" onclick="window.location.href='dashboard.html?booking=${bookingId}'">View Dashboard</button>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+            }
+            
+            function validateForm() {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const startDate = document.getElementById('start-date').value;
+                const terms = document.getElementById('terms').checked;
+                
+                if (!name || !email || !phone || !startDate) {
+                    alert('Please fill in all required fields.');
+                    return false;
+                }
+                if (!terms) {
+                    alert('Please accept the Terms and Conditions.');
+                    return false;
+                }
+                return true;
+            }
+            
+            function showSuccessOverlay() {
+                const overlay = document.createElement('div');
+                overlay.className = 'success-overlay';
+                overlay.innerHTML = `
+                    <div class="success-icon">✓</div>
+                    <div class="success-message">🎉 Booking Successful!</div>
+                    <div class="success-submessage">Your Kenyan adventure awaits! We'll contact you soon.</div>
+                    <button class="success-btn" onclick="window.location.href='index.html'">Return to Home</button>
+                `;
+                document.body.appendChild(overlay);
+                setTimeout(() => { window.location.href = 'index.html'; }, 5000);
+            }
+            
+            // Initialize
+            const today = new Date();
+            today.setDate(today.getDate() + 1);
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById('start-date').min = formattedDate;
+            document.getElementById('start-date').value = formattedDate;
+            updateBookingSummary();
+        });
+    </script>
+</body>
+</html>

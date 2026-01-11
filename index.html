@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tujibambe - Kenya's Ultimate Adventures</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Critical CSS for above-the-fold content */
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+        .hero-section { min-height: 100vh; position: relative; overflow: hidden; }
+        .hero-image { width: 100%; height: 100vh; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); }
+        .hero-content { position: relative; z-index: 2; color: white; max-width: 800px; }
+        .hero-title { font-size: 3rem; margin-bottom: 1rem; }
+        .btn { display: inline-block; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .btn-primary { background: #2d5a27; color: white; }
+        .btn-secondary { background: transparent; color: white; border: 2px solid white; }
+        
+        /* Lazy loading placeholder */
+        .lazy-load {
+            background: #f0f0f0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="#" class="brand-link">Tujibambe</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#adventures">Adventures</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-slider">
+                <div class="hero-slide active">
+                    <img src="pexels-bruno-almeida-1423946545-26990519.jpg" alt="Kenya Safari" class="hero-image" loading="eager">
+                    <div class="hero-overlay"></div>
+                    <div class="container hero-container">
+                        <div class="hero-content">
+                            <span class="hero-tag">✨ 2024 Ultimate Adventures</span>
+                            <h1 class="hero-title">Experience Kenya's <br><span class="text-accent">Untamed Wilderness</span></h1>
+                            <p class="hero-desc">From the peaks of Mt. Kenya to the vast plains of the Mara, embark on a journey that will stay with you forever.</p>
+                            <div class="hero-btns">
+                                <a href="#adventures" class="btn btn-primary">Discover More</a>
+                                <a href="booking.html" class="btn btn-secondary">Reserve Now</a>
+                            </div>
+                            <div class="hero-social-proof">
+                                <div class="avatar-group">
+                                    <img src="https://i.pravatar.cc/100?u=1" alt="User" loading="lazy">
+                                    <img src="https://i.pravatar.cc/100?u=2" alt="User" loading="lazy">
+                                    <img src="https://i.pravatar.cc/100?u=3" alt="User" loading="lazy">
+                                    <div class="avatar-plus">5k+</div>
+                                </div>
+                                <p>Joined by over 5,000+ adventurers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-scroll-indicator">
+                <div class="mouse"></div>
+                <span>Scroll Down</span>
+            </div>
+        </section>
+
+        <section id="adventures" class="adventures">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Our Categories</span>
+                    <h2>Choose Your <span class="text-accent">Adventure</span></h2>
+                    <p>From thrilling safaris to serene cultural immersions, discover the perfect experience for your Kenyan journey.</p>
+                </div>
+                <div class="adventures-grid">
+                    <div class="adventure-card">
+                        <div class="card-image-wrapper">
+                            <img src="balkan-campers-ON2TRrhgOBU-unsplash.jpg" alt="Roadtrips" class="card-img" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-category">Scenic</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Roadtrips</h3>
+                            <p>Scenic drives through Kenya's diverse landscapes, from savannas to mountains.</p>
+                            <a href="roadtrips.html" class="card-link">Explore Discovery <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                    <div class="adventure-card">
+                        <div class="card-image-wrapper">
+                            <img src="kamil-pietrzak-XZqowDF0OrM-unsplash.jpg" alt="Safari Adventures" class="card-img" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-category">Extreme</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Safari Adventures</h3>
+                            <p>Thrilling experiences like safari runs, extreme sports, and wildlife encounters.</p>
+                            <a href="adventures.html" class="card-link">Explore Discovery <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                    <div class="adventure-card">
+                        <div class="card-image-wrapper">
+                            <img src="domino-studio-Bc3Kjwxqu-E-unsplash.jpg" alt="Cultural Tours" class="card-img" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-category">Heritage</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Cultural Tours</h3>
+                            <p>Cultural immersions, historical tours, and relaxing retreats in Kenya's heritage sites.</p>
+                            <a href="activities.html" class="card-link">Explore Discovery <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                    <div class="adventure-card">
+                        <div class="card-image-wrapper">
+                            <img src="meg-von-haartman-atzjD7UuxcI-unsplash.jpg" alt="Safari Tours" class="card-img" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-category">Wild</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Safari Tours</h3>
+                            <p>Guided wildlife safaris in Kenya's national parks and reserves.</p>
+                            <a href="safari-tours.html" class="card-link">Explore Discovery <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                    <div class="adventure-card">
+                        <div class="card-image-wrapper">
+                            <img src="pexels-nappy-1058958.jpg" alt="Mountain Climbing" class="card-img" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-category">Summit</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Mountain Climbing</h3>
+                            <p>Conquer Kenya's peaks, including Mount Kenya and Kilimanjaro approaches.</p>
+                            <a href="mountain-climbing.html" class="card-link">Explore Discovery <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                    <div class="adventure-card">
+                        <div class="card-image-wrapper">
+                            <img src="anthony-lim-VcGxTaeB-2w-unsplash.jpg" alt="Beach Getaways" class="card-img" loading="lazy">
+                            <div class="card-overlay">
+                                <span class="card-category">Relax</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Beach Getaways</h3>
+                            <p>Relax on Kenya's pristine coastlines and islands.</p>
+                            <a href="beach-getaways.html" class="card-link">Explore Discovery <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="featured" class="featured">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Handpicked for You</span>
+                    <h2>Featured <span class="text-accent">Adventures</span></h2>
+                    <p>Handpicked experiences that showcase the best of Kenya's wilderness and culture.</p>
+                </div>
+                <div class="featured-grid">
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Safari Run" class="card-img" loading="lazy">
+                            <div class="card-price-tag">$800</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-top">
+                                <span class="duration">3 Days</span>
+                                <div class="rating">⭐ 4.9</div>
+                            </div>
+                            <h3>Ultimate Safari Run</h3>
+                            <p>Run with the wildebeest migration in the Maasai Mara. Experience the raw power of nature up close.</p>
+                            <div class="card-footer">
+                                <a href="booking.html?trip=safari-run" class="btn btn-primary btn-sm">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1464822759844-d150f39ac1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mount Kenya Circuit" class="card-img" loading="lazy">
+                            <div class="card-price-tag">$950</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-top">
+                                <span class="duration">5 Days</span>
+                                <div class="rating">⭐ 5.0</div>
+                            </div>
+                            <h3>Mount Kenya Circuit</h3>
+                            <p>Circumnavigate Africa's second-highest peak through forests and wildlife reserves.</p>
+                            <div class="card-footer">
+                                <a href="booking.html?trip=mount-kenya" class="btn btn-primary btn-sm">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Maasai Cultural Visit" class="card-img" loading="lazy">
+                            <div class="card-price-tag">$600</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-top">
+                                <span class="duration">3 Days</span>
+                                <div class="rating">⭐ 4.8</div>
+                            </div>
+                            <h3>Maasai Cultural Immersion</h3>
+                            <p>Live with Maasai warriors, learn their traditions, and participate in age-old ceremonies.</p>
+                            <div class="card-footer">
+                                <a href="booking.html?trip=maasai-cultural" class="btn btn-primary btn-sm">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What Adventurers Say</h2>
+                    <p>Real stories from travelers who've experienced Kenya's magic through Tujibambe.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Tujibambe exceeded all my expectations! Our safari run blended heart-pounding action with seamless luxe comfort."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sarah Johnson" loading="lazy">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <span>Adventure Enthusiast</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The Maasai cultural immersion rewired my worldview. Every moment felt intentional, respectful, and deeply human."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Michael Chen" loading="lazy">
+                            <div>
+                                <h4>Michael Chen</h4>
+                                <span>Travel Photographer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"We surfed dunes, trekked alpine forests, and shared beach sundowners without missing a beat. Tujibambe keeps the adrenaline flowing."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Emma Rodriguez" loading="lazy">
+                            <div>
+                                <h4>Emma Rodriguez</h4>
+                                <span>Solo Traveler</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready for Your Kenyan Adventure?</h2>
+                    <p>Don't wait! Your unforgettable journey awaits. Book now and create memories that will last a lifetime.</p>
+                    <a href="booking.html" class="btn btn-primary">Start Your Adventure</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tujibambe</h3>
+                    <p>Your gateway to Kenya's most thrilling adventures. Experience the wild side of Africa like never before.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Follow us on Facebook">Facebook</a>
+                        <a href="#" class="social-link" title="Follow us on Instagram">Instagram</a>
+                        <a href="#" class="social-link" title="Follow us on Twitter">Twitter</a>
+                        <a href="#" class="social-link" title="Watch us on YouTube">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Adventures</h3>
+                    <ul>
+                        <li><a href="roadtrips.html" class="footer-link">Roadtrips</a></li>
+                        <li><a href="adventures.html" class="footer-link">Crazy Adventures</a></li>
+                        <li><a href="activities.html" class="footer-link">Timeless Activities</a></li>
+                        <li><a href="safari-tours.html" class="footer-link">Safari Tours</a></li>
+                        <li><a href="mountain-climbing.html" class="footer-link">Mountain Climbing</a></li>
+                        <li><a href="beach-getaways.html" class="footer-link">Beach Getaways</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Specialties</h3>
+                    <ul>
+                        <li><a href="wildlife-photography.html" class="footer-link">Wildlife Photography</a></li>
+                        <li><a href="cultural-tours.html" class="footer-link">Cultural Tours</a></li>
+                        <li><a href="extreme-sports.html" class="footer-link">Extreme Sports</a></li>
+                        <li><a href="luxury-camping.html" class="footer-link">Luxury Camping</a></li>
+                        <li><a href="bird-watching.html" class="footer-link">Bird Watching</a></li>
+                        <li><a href="fishing-expeditions.html" class="footer-link">Fishing Expeditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>📧 info@tujibambe.com</p>
+                    <p>📞 +254 700 123 456</p>
+                    <p>📍 Nairobi, Kenya</p>
+                    <div class="footer-links">
+                        <a href="about-us.html" class="footer-link-btn">About Us</a>
+                        <a href="privacy-policy.html" class="footer-link-btn">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="footer-link-btn">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tujibambe. All rights reserved.</p>
+                <div class="footer-animated-text">
+                    <span>Discover Kenya's Wild Side • Unforgettable Adventures • Book Your Journey Today • Experience the Magic of Africa • </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Optimized inline script to reduce render-blocking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load images
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            const lazyLoad = function() {
+                lazyImages.forEach(img => {
+                    if (img.getBoundingClientRect().top < window.innerHeight + 100) {
+                        img.src = img.dataset.src || img.src;
+                    }
+                });
+            };
+            
+            // Add event listeners
+            window.addEventListener('scroll', lazyLoad);
+            window.addEventListener('resize', lazyLoad);
+            
+            // Initial load
+            lazyLoad();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="script.js" defer></script>
+</body>
+</html>
